@@ -3,6 +3,13 @@ package com.weborders.utilities;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
 
 public class Driver {
 
@@ -19,8 +26,13 @@ public class Driver {
     private static WebDriver driver;
     private Driver(){}
 
-    public static WebDriver getDriver(){
+    public static WebDriver getDriver() throws IOException {
         if(driver==null){
+
+          /*  Properties properties=new Properties();
+            properties.load(new FileInputStream("configuration.properties"));
+            String browser =properties.getProperty("browser");*/
+
             String browser="chrome";
 
             switch (browser){
@@ -31,11 +43,11 @@ public class Driver {
                     break;
                 case "firefox":
                     WebDriverManager.firefoxdriver().setup();
-                    driver=new ChromeDriver();
+                    driver=new FirefoxDriver();
                     break;
                 case "edge":
                     WebDriverManager.edgedriver().setup();
-                    driver=new ChromeDriver();
+                    driver=new EdgeDriver();
                     break;
 
                 default:
