@@ -26,14 +26,14 @@ public class Driver {
     private static WebDriver driver;
     private Driver(){}
 
-    public static WebDriver getDriver() throws IOException {
+    public static WebDriver getDriver()  {
         if(driver==null){
 
           /*  Properties properties=new Properties();
             properties.load(new FileInputStream("configuration.properties"));
             String browser =properties.getProperty("browser");*/
 
-            String browser="chrome";
+            String browser=ConfigurationReader.getProperty("browser");
 
             switch (browser){
 

@@ -14,8 +14,6 @@ public class ConfigurationReader {
         //works  only for the  classes that implement Autoclosable interface
         try (InputStream in = new FileInputStream("configuration.properties")) {
             properties.load(in);
-            in.close();
-
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Failed to load configuration.properties file!");
@@ -24,5 +22,9 @@ public class ConfigurationReader {
 
     public static String getProperty(String key){
         return properties.getProperty(key);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(getProperty("browser"));
     }
 }
